@@ -1,0 +1,13 @@
+- name: update OS
+  hosts: webapp
+  remote_user: sysadmin
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+           - name: yum update and print output
+             shell: sudo yum update -y
+             register: yumoutput
+
+           - debug:
+                  var: yumoutput.stdout_lines
